@@ -789,7 +789,8 @@ class Ec2Inventory(object):
         if not hostname:
             hostname = dest
         else:
-            hostname = self.to_safe(hostname).lower()
+            # keep raw unsafe hostname variable for inventory host entry
+            safe_hostname = self.to_safe(hostname).lower()
 
         # if we only want to include hosts that match a pattern, skip those that don't
         if self.pattern_include and not self.pattern_include.match(hostname):
